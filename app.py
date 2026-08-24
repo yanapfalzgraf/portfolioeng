@@ -46,7 +46,7 @@ lightbulb_icon = get_image_data_url("assets/icons/lightbulb.svg")
 target_icon = get_image_data_url("assets/icons/crosshair.svg")
 growth_icon = get_image_data_url("assets/icons/chart-column-decreasing.svg")
 st.set_page_config(
-    page_title="Yana Pfalzgraf | Senior UX/UI Product Designer  ",
+    page_title="Yana Pfalzgraf | Senior UX/UI Product Designer",
     page_icon="YP",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -250,8 +250,93 @@ st.html(
         opacity: 0.78;
     }
 
+    /* Hero typography — calmer, more spacious, two-line title */
+    .hero-copy {
+        padding-top: 1.4rem !important;
+        margin-top: 0 !important;
+    }
+
+    .hero-copy .eyebrow {
+        margin: 0 0 1.35rem !important;
+        letter-spacing: 0.12em;
+    }
+
+    .hero-copy .hero-title {
+        margin: 0 0 1.4rem;
+        max-width: 760px;
+        line-height: 1;
+        font-family: inherit;
+    }
+
+    .hero-copy .hero-role {
+        display: block;
+        color: #111713;
+        font-size: clamp(3.7rem, 5.15vw, 5.7rem);
+        font-weight: 400;
+        line-height: 0.94;
+        letter-spacing: -0.04em;
+    }
+
+    .hero-copy .hero-specialty {
+        display: block;
+        margin-top: 0.85rem;
+        color: #1f5a49;
+        font-size: clamp(2.15rem, 3.15vw, 3.35rem);
+        font-weight: 400;
+        line-height: 1.02;
+        letter-spacing: -0.025em;
+    }
+
+    .hero-copy .hero-lead {
+        max-width: 650px;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Move portrait higher and align it visually with the hero heading */
+    .portrait-wrap {
+        margin-top: 1.15rem !important;
+    }
+
+    /* Reduce the large empty gap between navigation and hero */
+    div[data-testid="stHorizontalBlock"]:has(.hero-copy) {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+
+    @media (max-width: 900px) {
+        .hero-copy {
+            padding-top: 0.8rem !important;
+        }
+
+        .hero-copy .hero-role {
+            font-size: clamp(3.25rem, 8vw, 4.9rem);
+        }
+
+        .hero-copy .hero-specialty {
+            font-size: clamp(2rem, 5.5vw, 3rem);
+        }
+
+        .portrait-wrap {
+            margin-top: 0.8rem !important;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .hero-copy .hero-role {
+            font-size: clamp(2.8rem, 12vw, 4rem);
+            line-height: 0.96;
+        }
+
+        .hero-copy .hero-specialty {
+            margin-top: 0.7rem;
+            font-size: clamp(1.9rem, 8vw, 2.55rem);
+        }
+    }
+
     /* About / Expertise: tighter spacing and exact top alignment */
     .expertise-section {
+         margin-top: -1rem !important;
         margin-bottom: 2.6rem !important;
     }
 
@@ -703,14 +788,17 @@ st.html(
 
 # Hero
 st.html('<span id="home" class="anchor"></span>')
-hero_text, hero_visual = st.columns([1.08, 0.92], gap="large", vertical_alignment="center")
+hero_text, hero_visual = st.columns([1.12, 0.88], gap="large", vertical_alignment="top")
+
 
 with hero_text:
     st.html(
         """
         <section class="hero-copy">
             <p class="eyebrow">HELLO, I’M YANA</p>
-            <h1>Senior Product Designer<br><span>UX/UI · Complex Digital Products</span></h1>
+                <span><h1>Senior UX/UI Product Designer</h1></span>
+                <h2> ...of Complex Digital Products</h2><br>
+            
             <p class="hero-lead">
                 I bring <b>10+ years of experience</b> designing digital products — from UX strategy,
                 research and interaction design to prototyping, design systems and implementation.
