@@ -1,0 +1,1183 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap");
+
+:root {
+    --ink: #171916;
+    --muted: #626861;
+    --green: #234f42;
+    --green-dark: #18483a;
+    --green-soft: #e9efeb;
+    --cream: #f5f3ee;
+    --line: #dedfd9;
+    --white: #ffffff;
+    --page-bg: #fbfbf9;
+    --shadow: 0 18px 50px rgba(30, 42, 35, 0.09);
+}
+
+html { scroll-behavior: smooth; }
+
+body,
+[data-testid="stAppViewContainer"] {
+    font-family: "DM Sans", sans-serif;
+    color: var(--ink);
+    background: var(--page-bg);
+}
+
+[data-testid="stHeader"] { display: none; }
+[data-testid="stToolbar"] { visibility: hidden; }
+[data-testid="stSidebar"] { display: none; }
+
+.block-container {
+    max-width: 1280px;
+    padding: 0 3.2rem 4rem;
+}
+
+h1, h2, h3 { letter-spacing: -0.025em; }
+
+p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.anchor {
+    display: block;
+    position: relative;
+    top: -90px;
+    visibility: hidden;
+}
+
+/* Alle Spalten einer Projektzeile gleich hoch machen */
+div[data-testid="stHorizontalBlock"] {
+    align-items: stretch;
+}
+
+div[data-testid="stHorizontalBlock"] > div[data-testid="stColumn"] {
+    display: flex;
+}
+
+div[data-testid="stHorizontalBlock"]
+> div[data-testid="stColumn"]
+> div[data-testid="stVerticalBlock"] {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+div[data-testid="stElementContainer"]:has(.project-card) {
+    display: flex;
+    flex: 1;
+}
+
+div[data-testid="stElementContainer"]:has(.project-card)
+div[data-testid="stMarkdownContainer"] {
+    display: flex;
+    width: 100%;
+}
+
+button[kind="primary"]:disabled {
+    color: #ffffff !important;
+    opacity: 1;
+}
+
+button[kind="primary"]:disabled * {
+    color: #ffffff !important;
+}
+
+
+/* HEADER */
+.site-header {
+    min-height: 78px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(251, 251, 249, 0.93);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(222, 223, 217, 0.8);
+}
+
+.site-header .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.brand-mark {
+    font-family: "Playfair Display", serif;
+    font-size: 1.55rem;
+    font-weight: 600;
+}
+
+.site-header nav {
+    display: flex;
+    gap: 2rem;
+}
+
+.site-header nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.header-cta {
+    justify-self: end;
+    padding: 0.85rem 1.15rem;
+    color: #fff !important;
+    background: var(--green);
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+
+
+/* BUTTONS */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 1.25rem;
+    border-radius: 6px;
+    text-decoration: none !important;
+}
+
+.button.primary {
+    color: #fff !important;
+    background: var(--green);
+    font-weight: 500;
+}
+
+.button.primary:hover,
+.header-cta:hover {
+    background: var(--green-dark);
+}
+
+.button.secondary {
+    color: var(--ink);
+    border: 1px solid #7f8b85;
+    background: transparent;
+}
+
+.stButton button[kind="primary"],
+button[data-testid="baseButton-primary"] {
+    color: #fff !important;
+    background: var(--green) !important;
+    border-color: var(--green) !important;
+    font-weight: 600 !important;
+}
+
+.stButton button[kind="primary"]:hover,
+button[data-testid="baseButton-primary"]:hover {
+    color: #fff !important;
+    background: var(--green-dark) !important;
+    border-color: var(--green-dark) !important;
+}
+
+.stButton button[kind="primary"] *,
+button[data-testid="baseButton-primary"] * {
+    color: #fff !important;
+}
+
+div[data-testid="stDialog"] button[data-testid="baseButton-secondary"] {
+    color: var(--green) !important;
+    background: #fff !important;
+    border-color: #cbd3cf !important;
+}
+
+div[data-testid="stDialog"] button[data-testid="baseButton-secondary"] * {
+    color: var(--green) !important;
+}
+
+/* HERO */
+.hero-copy { padding: 6rem 0 4rem; }
+
+.eyebrow {
+    margin-bottom: 1rem;
+    color: var(--green);
+    letter-spacing: 0.09em;
+    font-size: 0.76rem;
+    font-weight: 600;
+}
+
+.hero-copy h1 {
+    margin: 0 0 1.6rem;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(3rem, 5.5vw, 5.3rem);
+    line-height: 1.02;
+}
+
+.hero-copy h1 span { color: var(--green); }
+.hero-lead { max-width: 680px; font-size: 1.16rem; }
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.portrait-wrap {
+    width: min(100%, 400px);
+    height: 520px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 50% 50% 20px 20px / 38% 38% 20px 20px;
+    box-shadow: 0 24px 55px rgba(25, 52, 46, 0.14);
+}
+
+.portrait-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center top;
+}
+
+/* EXPERTISE / END-TO-END */
+.expertise-section {
+    margin: 4.4rem 0 1.5rem;
+}
+
+.expertise-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.expertise-card {
+    min-height: 205px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: 1.25rem;
+    padding: 1.65rem;
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid rgba(222, 223, 217, 0.82);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(30, 42, 35, 0.045);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.expertise-card:hover {
+    transform: translateY(-3px);
+    border-color: #ccd7d1;
+    box-shadow: 0 18px 40px rgba(30, 42, 35, 0.08);
+}
+
+.expertise-icon {
+    width: 3.25rem;
+    height: 3.25rem;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    background: var(--green);
+    border-radius: 50%;
+    box-shadow: 0 8px 18px rgba(35, 79, 66, 0.18);
+}
+
+.expertise-icon svg {
+    width: 1.55rem;
+    height: 1.55rem;
+}
+
+.expertise-card-copy {
+    min-width: 0;
+}
+
+.expertise-number,
+.expertise-kicker {
+    margin: 0 0 0.15rem;
+    color: var(--green);
+}
+
+.expertise-number {
+    font-family: "Playfair Display", serif;
+    font-size: 3.4rem;
+    font-weight: 600;
+    line-height: 0.95;
+}
+
+.expertise-kicker {
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.expertise-card h3 {
+    margin: 0.30rem 0 0.8rem;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.7rem, 2.4vw, 2.2rem);
+    line-height: 1.15;
+    font-weight: 700;
+}
+
+.expertise-card p:last-child {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.process-panel {
+    margin-top: 1.5rem;
+    padding: 1.45rem 1.7rem 1.65rem;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(222, 223, 217, 0.82);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(30, 42, 35, 0.035);
+}
+
+.process-eyebrow {
+    margin: 0 0 1.25rem;
+    color: var(--green);
+    letter-spacing: 0.1em;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.process-flow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: start;
+    gap: 0.7rem;
+}
+
+.process-step {
+    min-width: 0;
+    text-align: center;
+}
+
+.process-icon {
+    width: 3.1rem;
+    height: 3.1rem;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 0.7rem;
+
+    color: var(--green);
+    background: #fff;
+
+    border: 2px solid var(--green);   /* statt var(--line) */
+    border-radius: 50%;
+}
+
+.process-icon svg {
+    width: 1.45rem;
+    height: 1.45rem;
+}
+
+.process-icon img {
+    width: 24px;
+    height: 24px;
+    display: block;
+    object-fit: contain;
+
+    filter: brightness(0) saturate(100%)
+            invert(22%) sepia(26%) saturate(868%)
+            hue-rotate(118deg) brightness(95%) contrast(92%);
+
+    opacity: 1;
+}
+
+.process-step h4 {
+    margin: 0 0 0.5rem;
+    color: var(--ink);
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.process-step p {
+    max-width: 190px;
+    margin: 0 auto;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.process-arrow {
+    align-self: center;
+    margin-top: 0.4rem;
+    color: #8c9892;
+    font-size: 1.8rem;
+}
+
+/* SECTIONS / SKILLS */
+.section-heading { margin: 2.2rem 0 1.5rem; }
+
+.section-heading > span,
+.project-category span {
+    color: var(--green);
+    letter-spacing: 0.09em;
+    font-size: 0.73rem;
+    font-weight: 600;
+}
+
+.section-heading h2 {
+    margin: 0.25rem 0 0.5rem;
+    font-family: "Playfair Display", serif;
+    font-size: 2.25rem;
+}
+
+.section-heading p { max-width: 720px; }
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+}
+
+.skills-grid span,
+.project-tag {
+    padding: 0.62rem 0.82rem;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font-size: 1rem;      /* vorher 0.8rem */
+}
+
+/* PROJECTS */
+.project-category {
+    margin-bottom: 1.25rem;
+    padding: 2.6rem 0 0.75rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.project-category.data { margin-top: 1rem; }
+
+.project-card {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 9px;
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px;
+}
+
+.project-card {
+    min-width: 0;
+}
+
+.project-description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 0;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
+
+.project-image-wrapper {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background: #e8efeb;
+}
+
+.project-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    image-rendering: auto;
+}
+
+.project-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    gap: 0.6rem;
+    padding: 1rem 1.2rem;
+}
+
+.project-content h3 {
+    margin: 0.6rem 0 0.15rem;
+}
+
+.project-content p {
+    font-size: 0.82rem;
+    line-height: 1.55;
+}
+
+.project-subtitle {
+    margin-bottom: 0.4rem;
+    color: var(--green) !important;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 0.4rem;
+
+    margin-top: auto;
+
+    height: 3.8rem;
+    max-height: 3.8rem;
+    overflow: hidden;
+}
+
+.project-tag {
+    padding: 0.3rem 0.45rem;
+    background: var(--cream);
+    font-size: 0.68rem;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+
+
+
+/* PROJEKTKARTEN: identische Höhe inklusive Button */
+[class*="st-key-project_card_"] {
+    height: 100%;
+}
+
+[class*="st-key-project_card_"] > div[data-testid="stVerticalBlock"] {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+[class*="st-key-project_card_"] div[data-testid="stElementContainer"]:has(.project-card) {
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+[class*="st-key-project_card_"] div[data-testid="stMarkdownContainer"]:has(.project-card) {
+    display: flex;
+    width: 100%;
+}
+
+[class*="st-key-project_card_"] .project-card {
+    width: 100%;
+    height: 100%;
+}
+
+[class*="st-key-project_card_"] div[data-testid="stButton"] {
+    margin-top: auto;
+}
+
+/* Gleich hohe Textbereiche, damit Titel, Beschreibung und Tags fluchten */
+.project-content h3 {
+    min-height: 2.5rem;
+}
+
+.project-subtitle {
+    min-height: 3.9rem;
+}
+
+
+/* UX-PROJEKT-CAROUSEL: 3 Karten sichtbar, ein Schritt pro Klick */
+.st-key-ux_project_carousel {
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+
+.st-key-ux_project_carousel > div[data-testid="stVerticalBlock"] {
+    gap: 0.9rem;
+}
+
+.st-key-ux_project_carousel div[data-testid="stHorizontalBlock"] {
+    align-items: stretch;
+}
+
+.st-key-ux_project_carousel div[data-testid="stColumn"]:first-child,
+.st-key-ux_project_carousel div[data-testid="stColumn"]:last-child {
+    align-items: center;
+    justify-content: center;
+}
+
+.st-key-ux_project_carousel div[data-testid="stColumn"]:first-child button,
+.st-key-ux_project_carousel div[data-testid="stColumn"]:last-child button {
+    width: 46px;
+    min-width: 46px;
+    height: 46px;
+    min-height: 46px;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    border: 1px solid var(--line) !important;
+    background: var(--white) !important;
+    color: var(--green) !important;
+    font-size: 1.35rem !important;
+    box-shadow: 0 10px 28px rgba(30, 42, 35, 0.08);
+}
+
+.st-key-ux_project_carousel div[data-testid="stColumn"]:first-child button:hover:not(:disabled),
+.st-key-ux_project_carousel div[data-testid="stColumn"]:last-child button:hover:not(:disabled) {
+    border-color: #bdcbc4 !important;
+    background: var(--green-soft) !important;
+    transform: translateY(-1px);
+}
+
+.st-key-ux_project_carousel button:disabled {
+    opacity: 0.28 !important;
+    cursor: default !important;
+}
+
+.carousel-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-height: 18px;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    display: block;
+    border-radius: 50%;
+    background: #d5d9d6;
+}
+
+.carousel-dot.active {
+    width: 10px;
+    height: 10px;
+    background: var(--green);
+}
+
+/* PROJECT DIALOG */
+.case-image-frame {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.case-image-frame img {
+    width: 100%;
+    max-width: 1350px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    border-radius: 18px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.case-counter {
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* CONTACT / FOOTER */
+.contact-banner {
+    margin: 5rem 0 2.5rem;
+    padding: 2.1rem 2.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    background: linear-gradient(110deg, #f1f2ed, #e6ece7);
+    border-radius: 12px;
+}
+
+.contact-banner h2 {
+    margin: 0.2rem 0;
+    font-family: "Playfair Display", serif;
+}
+
+.contact-banner p { margin-bottom: 0; }
+
+footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    padding: 2.5rem 0 1rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.82rem;
+}
+
+footer p { line-height: 1.6; }
+
+footer > div {
+    min-width: 0;
+}
+
+footer strong {
+    display: block;
+    margin-bottom: 0.8rem;
+    color: var(--ink);
+    letter-spacing: .08em;
+}
+
+footer a {
+    color: var(--green);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.footer-contact-link {
+    display: inline-block;
+    margin-top: .8rem;
+    font-weight: 600;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .block-container { padding: 0 1.25rem 3rem; }
+    .site-header { grid-template-columns: 1fr auto; }
+    .site-header nav { display: none; }
+    .hero-copy { padding-top: 3.2rem; }
+
+    .expertise-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .expertise-card {
+        min-height: 0;
+    }
+
+    .process-flow {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .process-arrow {
+        margin: -0.2rem 0;
+        transform: rotate(90deg);
+    }
+
+    .process-step p {
+        max-width: 300px;
+    }
+
+    .contact-banner {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+
+
+    .st-key-ux_project_carousel div[data-testid="stHorizontalBlock"] {
+        gap: 0.65rem;
+    }
+
+    .st-key-ux_project_carousel div[data-testid="stColumn"]:first-child button,
+    .st-key-ux_project_carousel div[data-testid="stColumn"]:last-child button {
+        width: 40px;
+        min-width: 40px;
+        height: 40px;
+        min-height: 40px;
+    }
+
+    footer { grid-template-columns: 1fr; }
+    .project-image-wrapper { height: 200px; }
+}
+
+@media (max-width: 560px) {
+    .expertise-section { margin-top: 3rem; }
+    .expertise-card { grid-template-columns: 1fr; padding: 1.35rem; }
+    .expertise-icon { width: 3rem; height: 3rem; }
+    .process-panel { padding: 1.3rem 1.1rem 1.5rem; }
+}
+
+/* CONTACT-BANNER MIT STREAMLIT-BUTTON */
+.st-key-contact_banner {
+    margin: 5rem 0 2.5rem;
+    padding: 2.1rem 2.4rem;
+    background: linear-gradient(110deg, #f1f2ed, #e6ece7);
+    border-radius: 12px;
+}
+
+.st-key-contact_banner .contact-banner-copy h2 {
+    margin: 0.2rem 0;
+    font-family: "Playfair Display", serif;
+}
+
+.st-key-contact_banner .contact-banner-copy p:last-child {
+    margin: 0;
+}
+
+.st-key-contact_banner div[data-testid="stButton"] {
+    width: 100%;
+}
+
+.st-key-contact_banner button {
+    min-height: 54px;
+    border-radius: 6px !important;
+}
+
+/* CHAT-DIALOG */
+div[data-testid="stDialog"] > div[role="dialog"]:has(.portfolio-chat) {
+    width: min(430px, calc(100vw - 2rem)) !important;
+    max-width: 430px !important;
+    max-height: min(760px, 92vh) !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border-radius: 24px !important;
+    border: 1px solid rgba(222, 223, 217, 0.95);
+    background: #fffaf7;
+    box-shadow: 0 28px 80px rgba(30, 42, 35, 0.22);
+}
+
+.portfolio-chat {
+    margin: -0.25rem -0.25rem 0;
+}
+
+.portfolio-chat-header {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.9rem;
+    padding: 1rem 1.1rem;
+    color: #fff;
+    background: var(--green);
+    border-radius: 16px;
+}
+
+.portfolio-chat-avatar {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+}
+
+.portfolio-chat-avatar img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.78);
+}
+
+.portfolio-chat-status {
+    position: absolute;
+    right: 0;
+    bottom: 1px;
+    width: 11px;
+    height: 11px;
+    border: 2px solid var(--green);
+    border-radius: 50%;
+    background: #5fd270;
+}
+
+.portfolio-chat-header strong {
+    display: block;
+    color: #fff;
+    font-family: "Playfair Display", serif;
+    font-size: 1rem;
+}
+
+.portfolio-chat-header span {
+    display: block;
+    margin-top: 0.12rem;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.75rem;
+}
+
+div[data-testid="stDialog"]:has(.portfolio-chat)
+div[data-testid="stChatMessage"] {
+    margin: 0.4rem 0;
+    padding: 0.65rem 0.8rem;
+    border-radius: 16px;
+    background: #f2f4f1;
+}
+
+div[data-testid="stDialog"]:has(.portfolio-chat)
+div[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
+    margin-left: 2rem;
+    background: var(--green);
+}
+
+div[data-testid="stDialog"]:has(.portfolio-chat)
+div[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) p {
+    color: #fff;
+}
+
+div[data-testid="stDialog"]:has(.portfolio-chat)
+div[data-testid="stChatInput"] {
+    margin-top: 0.8rem;
+}
+
+div[data-testid="stDialog"]:has(.portfolio-chat)
+div[data-testid="stChatInput"] textarea {
+    min-height: 48px;
+    border-radius: 14px;
+}
+
+.portfolio-chat-note {
+    margin: 0.6rem 0 0;
+    color: var(--muted);
+    font-size: 0.72rem;
+    line-height: 1.45;
+}
+
+@media (max-width: 900px) {
+    .st-key-contact_banner {
+        padding: 1.7rem;
+    }
+
+    .st-key-contact_banner div[data-testid="stHorizontalBlock"] {
+        flex-direction: column;
+    }
+}
+
+/* SEPARATES KONTAKTFORMULAR */
+div[data-testid="stDialog"]:has(.portfolio-chat)
+div[data-testid="stForm"] {
+    padding: 0.9rem 0.95rem 0.25rem;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.72);
+}
+
+div[data-testid="stDialog"]:has(.portfolio-chat)
+textarea,
+div[data-testid="stDialog"]:has(.portfolio-chat)
+input {
+    border-radius: 10px;
+}
+
+/* FLOATING PORTFOLIO CHAT – WIX-ÄHNLICH UND FEST IM VIEWPORT */
+
+/*
+Streamlit versieht das Element aufgrund von
+key="floating_portfolio_chat" mit der Klasse
+.st-key-floating_portfolio_chat.
+
+Diese Klasse ist stabiler als ein aria-label-Selektor.
+*/
+.st-key-floating_portfolio_chat {
+    position: fixed !important;
+    right: 24px !important;
+    bottom: 24px !important;
+    left: auto !important;
+    top: auto !important;
+
+    z-index: 999999 !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+   
+}
+
+/* Streamlit-Wrapper nicht auf volle Seitenbreite ziehen */
+.st-key-floating_portfolio_chat,
+.st-key-floating_portfolio_chat > div,
+.st-key-floating_portfolio_chat div[data-testid="stPopover"] {
+    width: auto !important;
+    min-width: 0 !important;
+}
+
+/* Geschlossener Wix-ähnlicher Pill-Button */
+.st-key-floating_portfolio_chat div[data-testid="stPopover"] > button {
+    width: auto !important;
+    min-width: 0 !important;
+    min-height: 56px !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.55rem !important;
+
+    padding: 0.85rem 1.25rem !important;
+
+    color: #ffffff !important;
+    background: #58739d !important;
+
+    border: 0 !important;
+    border-radius: 999px !important;
+
+    box-shadow: 0 15px 36px rgba(54, 77, 112, 0.30) !important;
+
+    font-family: "DM Sans", sans-serif !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    white-space: nowrap !important;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease !important;
+}
+
+.st-key-floating_portfolio_chat div[data-testid="stPopover"] > button:hover {
+    color: #ffffff !important;
+    background: #4d678e !important;
+    border: 0 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 18px 42px rgba(54, 77, 112, 0.36) !important;
+}
+
+/*
+Das geöffnete Popover wird von Streamlit separat gerendert.
+Der Inhalt enthält .portfolio-chat, daher kann das Fenster
+darüber zuverlässig angesprochen werden.
+*/
+div[data-testid="stPopoverBody"]:has(.portfolio-chat) {
+    width: min(390px, calc(100vw - 32px)) !important;
+    max-width: 390px !important;
+    max-height: min(650px, calc(100vh - 110px)) !important;
+
+    padding: 1rem !important;
+    overflow-y: auto !important;
+
+    border: 1px solid rgba(222, 223, 217, 0.95) !important;
+    border-radius: 22px !important;
+
+    background: #fffaf7 !important;
+    box-shadow: 0 24px 70px rgba(30, 42, 35, 0.22) !important;
+}
+
+/* Blaues Wix-ähnliches Header-Design */
+/* Grüner Header passend zum Portfolio */
+div[data-testid="stPopoverBody"]:has(.portfolio-chat)
+.portfolio-chat-header {
+    background: linear-gradient(
+        135deg,
+        var(--green) 0%,
+        var(--green-dark) 100%
+    ) !important;
+}
+
+div[data-testid="stPopoverBody"]:has(.portfolio-chat)
+.portfolio-chat-status {
+    border-color: var(--green) !important;
+}
+
+/* Chatblasen */
+div[data-testid="stPopoverBody"]:has(.portfolio-chat)
+div[data-testid="stChatMessage"] {
+    margin: 0.4rem 0 !important;
+    padding: 0.65rem 0.8rem !important;
+
+    border-radius: 16px !important;
+    background: #f2f4f1 !important;
+}
+
+div[data-testid="stPopoverBody"]:has(.portfolio-chat)
+div[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
+    margin-left: 2rem !important;
+    background: #58739d !important;
+}
+
+div[data-testid="stPopoverBody"]:has(.portfolio-chat)
+div[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) p {
+    color: #ffffff !important;
+}
+
+/* Eingabefeld */
+div[data-testid="stPopoverBody"]:has(.portfolio-chat)
+div[data-testid="stChatInput"] textarea {
+    border-radius: 14px !important;
+}
+
+/*
+Der normale Streamlit-Platzhalter im Dokumentfluss soll
+keine sichtbare Höhe erzeugen.
+*/
+div[data-testid="stElementContainer"].st-key-floating_portfolio_chat {
+    min-height: 0 !important;
+    height: 0 !important;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .st-key-floating_portfolio_chat {
+        right: 14px !important;
+        bottom: 14px !important;
+    }
+
+    .st-key-floating_portfolio_chat div[data-testid="stPopover"] > button {
+        min-height: 52px !important;
+        padding: 0.75rem 1rem !important;
+        font-size: 0.86rem !important;
+    }
+
+    div[data-testid="stPopoverBody"]:has(.portfolio-chat) {
+        width: calc(100vw - 24px) !important;
+        max-width: calc(100vw - 24px) !important;
+        max-height: calc(100vh - 90px) !important;
+    }
+}
+
+/* =========================================================
+   FIX: Weißer Text im Kontaktformular-Submit-Button
+   Gilt auch für deaktivierten Zustand in aktuellen
+   Streamlit-/BaseWeb-Versionen.
+   ========================================================= */
+
+div[data-testid="stFormSubmitButton"] button,
+div[data-testid="stFormSubmitButton"] button:hover,
+div[data-testid="stFormSubmitButton"] button:focus,
+div[data-testid="stFormSubmitButton"] button:active,
+div[data-testid="stFormSubmitButton"] button:disabled,
+div[data-testid="stFormSubmitButton"] button[disabled],
+div[data-testid="stFormSubmitButton"] button[aria-disabled="true"] {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background-color: var(--green) !important;
+    border-color: var(--green) !important;
+    opacity: 1 !important;
+}
+
+/* Streamlit legt den sichtbaren Text oft in p/span/div ab */
+div[data-testid="stFormSubmitButton"] button *,
+div[data-testid="stFormSubmitButton"] button:hover *,
+div[data-testid="stFormSubmitButton"] button:focus *,
+div[data-testid="stFormSubmitButton"] button:active *,
+div[data-testid="stFormSubmitButton"] button:disabled *,
+div[data-testid="stFormSubmitButton"] button[disabled] *,
+div[data-testid="stFormSubmitButton"] button[aria-disabled="true"] * {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* Zusätzlicher Fallback für BaseWeb/Streamlit-Markup */
+div[data-testid="stForm"] button[data-testid="baseButton-primary"],
+div[data-testid="stForm"] button[data-testid="baseButton-primary"]:disabled,
+div[data-testid="stForm"] button[data-testid="baseButton-primary"][disabled] {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background: var(--green) !important;
+    border-color: var(--green) !important;
+    opacity: 1 !important;
+}
+
+div[data-testid="stForm"] button[data-testid="baseButton-primary"] *,
+div[data-testid="stForm"] button[data-testid="baseButton-primary"]:disabled *,
+div[data-testid="stForm"] button[data-testid="baseButton-primary"][disabled] * {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    opacity: 1 !important;
+}
+
